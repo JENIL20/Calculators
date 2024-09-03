@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+  <script>
+    function handleonchange(val) {
+
+      document.querySelector("h1").innerHTML = val
+      if (val === "Force") {
+        document.querySelector("#h31").innerHTML = "Mass"
+        document.querySelector("#h32").innerHTML = "Acceleration"
+      }
+      if (val === "Mass") {
+        document.querySelector("#h31").innerHTML = "Force"
+        document.querySelector("#h32").innerHTML = "Acceleration"
+      }
+      if (val === "Acceleration") {
+        document.querySelector("#h31").innerHTML = "Force"
+        document.querySelector("#h32").innerHTML = "Mass"
+      }
+    }
+    function handleclear() {
+      document.querySelector(".screen").val = ""
+      document.querySelector("#cal").value = "Force"
+      document.querySelector("h1").innerHTML = "Force"
+      document.querySelector("#h31").innerHTML = "Mass"
+      document.querySelector("#h32").innerHTML = "Acceleration"
+      document.querySelector("v31").value = ""
+      document.querySelector("v32").value = ""
+
+    }
+    function handlesubmit() {
+
+      if (document.querySelector("#cal").value === "Force") {
+        // console.log("jenl");
+        const m = document.querySelector("#v31").value
+        const a = document.querySelector("#v32").value
+        console.log(m);
+        document.querySelector(".screen").value = (m * a)
+      }
+      if (document.querySelector("#cal").value === "Acceleration") {
+        const f = document.querySelector("#v31").value
+        const m = document.querySelector("#v32").value
+        document.querySelector(".screen").value = f / m
+      }
+      if (document.querySelector("#cal").value === "Mass") {
+        const f = document.querySelector("#v31").value
+        const a = document.querySelector("#v32").value
+        document.querySelector(".screen").value = f / a
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="left">
+      <section class="calculator">
+        <form>
+          <h1>Force</h1>
+          <input type="text" style="color: white ;" class="screen" readonly value="">
+        </form>
+        <div class="button">
+          <div class="first">
+            <h2>Select What to Calculate</h2>
+            <select name="select" id="cal" onchange="handleonchange(this.value)">
+              <option value="Force">Force</option>
+              <option value="Acceleration">Acceleration</option>
+              <option value="Mass">Mass</option>
+            </select>
+          </div>
+          <div class="first" id="Force">
+            <h3 id="h31">Mass </h3>
+            <input id="v31" type="number" />
+          </div>
+          <div class="first" id="Mass">
+            <h3 id="h32">Acceleration </h3>
+            <input id="v32" type="number" />
+          </div>
+
+          <button type="button" class="btn btn-clear" onclick="handleclear()">C</button>
+          <button type="button" class="btn btn-equal" onclick="handlesubmit()">=</button>
+        </div>
+      </section>
+    </div>
+    <div class="right">
+      <h4>provide Force , mass ,acceleration to et one which are not known</h4>
+      <h6></h6>
+      <h6></h6>
+      <h6></h6>
+    </div>
+  </div>
+
+</body>
+
+</html>
